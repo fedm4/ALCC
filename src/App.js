@@ -3,6 +3,7 @@ import './App.css';
 import Home from './components/Home/Home.js';
 import Search from './components/Search/Search.js';
 import Details from './components/Details/Details.js';
+import autolistlogo from '../public/autolistlogo.png';
 
 class App extends Component {
   constructor(){
@@ -75,7 +76,7 @@ class App extends Component {
       <div className="App">
         <header className="mt-3 ml-3 text-left">
           <a href="/">
-            <img src="/autolistlogo.png" alt="Autolist" />
+            <img src={ autolistlogo } alt="Autolist" />
           </a>
         </header>
 
