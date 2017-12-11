@@ -25,7 +25,9 @@ class Search extends Component{
     constructor(props){
         super(props);
         this.state = {
-            activeIndex: false
+            activeIndex: false,
+            priceMax: false,
+            priceMin: false
         }
     }
 
@@ -37,6 +39,9 @@ class Search extends Component{
             this.setState({ activeIndex: index });
             this.props.SetSelectedItem(index);
         }
+    }
+    handleFilters(){
+
     }
 
     render(){
@@ -53,13 +58,40 @@ class Search extends Component{
         });
         return(
             <div>
-                <ul className="list-group mt-5">
+                <div className="mt-5 row">
+                    <div className="input-group col-md-5">
+                        <span className="d-inline-block input-group-addon bg-danger text-light">$</span>
+                        <input className="d-inline-block form-control"
+                            placeholder="Min Price"
+                            type="number"
+                            onChange={this.props.PriceMinChange}
+                            onKeyUp={this.props.PriceMinChange}
+                            onKeyDown={this.props.PriceMinChange}
+                            value={this.props.PriceMin} />
+                    </div>
+                    <div className="input-group col-md-5">
+                        <span className="d-inline-block input-group-addon bg-danger text-light">$</span>
+                        <input className="d-inline-block form-control"
+                            placeholder="Max Price"
+                            type="number"
+                            onChange={this.props.PriceMaxChange}
+                            onKeyUp={this.props.PriceMaxChange}
+                            onKeyDown={this.props.PriceMaxChange}
+                            value={this.props.PriceMax}  />
+                    </div>
+                    <div className="col-md-2 text-right">
+                        <button onClick={this.props.FetchData} type="button" className="btn btn-danger"><i className="fa fa-filter"></i></button>
+                    </div>
+                </div>
+                <ul className="list-group">
                     {listItems}
                 </ul>
-                <div className="mt-3 mb-5 text-right">
+                <div className="d-inline-block mt-3 mb-5 col-md-6 text-left">
                     <button type="button"
                             className={ this.props.CurrentPage===1 ? 'btn btn-danger hidden': 'btn btn-danger' }
                             onClick={this.props.GoToPrevious}>Previous</button>
+                </div>
+                <div className="d-inline-block mt-3 mb-5 col-md-6 text-right">
                     <button type="button"
                             className="btn btn-danger"
                             onClick={this.props.GoToNext}>Next</button>

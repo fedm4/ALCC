@@ -23,6 +23,12 @@ class App extends Component {
     if(this.state.filter_make.length >= 3){
       filters += '&make='+this.state.filter_make;
     }
+    if(this.state.price_min !== ''){
+      filters += '&price_min='+this.state.price_min;
+    }
+    if(this.state.price_max !== ''){
+      filters += '&price_max='+this.state.price_max;
+    }
     fetch('https://autolist-test.herokuapp.com/search?page='+this.state.currentPage + filters)
     .then(results => {return results.json()})
     .then(data => this.setState({data: data}));
@@ -40,6 +46,13 @@ class App extends Component {
   handleSearchInputChange = event => {
     this.setState({searchInput: event.target.value});
     this.setState({filter_make: this.state.searchInput});
+  };
+
+  handlePriceMinChange = event => {
+    this.setState({price_min: event.target.value});
+  };
+  handlePriceMaxChange = event => {
+    this.setState({price_max: event.target.value});
   };
 
   handleSearch = () => this.fetchData();
@@ -68,14 +81,19 @@ class App extends Component {
 
         <main className="col-md-8 offset-md-2 mb-5">
           <Home SearchAction={this.handleSearch}
-                          SearchChange={this.handleSearchInputChange}
-                          SearchInput={this.state.searchInput}></Home>
+                SearchChange={this.handleSearchInputChange}
+                SearchInput={this.state.searchInput}></Home>
           <Search SearchInput={this.state.data}
                   SetSelectedItem={this.setSelectedItem}
                   SelectedItem={this.state.selectedItem}
                   GoToPrevious={this.goToPrevious}
                   GoToNext={this.goToNext}
-                  CurrentPage={this.state.currentPage}></Search>
+                  CurrentPage={this.state.currentPage}
+                  FetchData={this.handleSearch}
+                  PriceMinChange={this.handlePriceMinChange}
+                  PriceMinInput={this.state.price_min}
+                  PriceMaxChange={this.handlePriceMaxChange}
+                  PriceMaxInput={this.state.price_max}></Search>
           <Details SelectedItem={this.state.selectedItem} closeModal={this.closeModal}></Details>
         </main>
       </div>
