@@ -41,7 +41,7 @@ class Search extends Component{
 
     render(){
         const listItems = this.props.SearchInput.records.map((record, index) => {
-            const active = this.state.activeIndex === index ? true : false;
+            const active = this.state.activeIndex === index && this.props.SelectedItem !== false ? true : false;
             return (
                 <ResultItem key={index}
                     id={record.id}

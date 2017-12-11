@@ -26,16 +26,28 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
-.modal{
-  display: block;
-  background-color: rgba(0,0,0, 0.5);
-  transition: opacity 0.5s linear;
-}
-.hidden{
-  opacity: 0;
-  z-index: -10;
-}
-.shown{
-  opacity: 1;
+
+.detail{
+  position: fixed;
+  height: 100%;
+  width: 30%;
+  top: 0;
+  right: 0;
+  border-right: none!important;
+  border-top: none!important;
+  border-bottom: none!important;
   z-index: 10;
+  transition: right 0.5s linear;
+}
+.close-panel{
+  border: none;
+  background: none;
+  font-size: 26px;
+}
+
+.detail.hidden{
+  right: calc(0px - 30%);
+}
+.detail-thumbnail{
+  max-width: 100%;
 }

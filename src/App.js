@@ -34,7 +34,7 @@ class App extends Component {
   }
 
   setSelectedItem = (index) => {
-    this.setState({selectedItem: this.state.data.records[index]});
+    this.setState({selectedItem: this.state.data.records[index] || false});
   }
 
   handleSearchInputChange = event => {
@@ -44,7 +44,14 @@ class App extends Component {
 
   handleSearch = () => this.fetchData();
 
-  closeModal = () => this.setState({selectedItem: false});
+  closeModal = () => this.setState({selectedItem: {
+      make: '',
+      model: '',
+      price: '',
+      mileage: '',
+      thumbnail_url: ''
+    }
+  });
 
   render() {
     return (
@@ -60,7 +67,8 @@ class App extends Component {
                           SearchChange={this.handleSearchInputChange}
                           SearchInput={this.state.searchInput}></Home>
           <Search SearchInput={this.state.data}
-                  SetSelectedItem={this.setSelectedItem}></Search>
+                  SetSelectedItem={this.setSelectedItem}
+                  SelectedItem={this.state.selectedItem}></Search>
           <Details SelectedItem={this.state.selectedItem} closeModal={this.closeModal}></Details>
         </main>
       </div>
