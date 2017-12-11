@@ -6,7 +6,7 @@ class Home extends Component{
     render(){
         return(
             <div className="input-group mt-5">
-                <span className="input-group-addon">Manufacturer:</span>
+                <span className="input-group-addon bg-danger text-light">Manufacturer:</span>
                 <input type="text"
                     className="form-control"
                     placeholder="Audi, Volvo, BMW..."
@@ -15,7 +15,7 @@ class Home extends Component{
                     onKeyDown={this.props.SearchChange}
                     value={this.props.SearchInput} />
                 <span className="input-group-btn">
-                    <button className="btn btn-secondary"
+                    <button className="btn btn-danger"
                             type="button"
                             onClick={this.props.SearchAction}>
                                 <i className="fa fa-search"></i>

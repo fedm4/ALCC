@@ -52,9 +52,19 @@ class Search extends Component{
                 </ResultItem>);
         });
         return(
-            <ul className="list-group mt-5">
-                {listItems}
-            </ul>
+            <div>
+                <ul className="list-group mt-5">
+                    {listItems}
+                </ul>
+                <div className="mt-3 mb-5 text-right">
+                    <button type="button"
+                            className={ this.props.CurrentPage===1 ? 'btn btn-danger hidden': 'btn btn-danger' }
+                            onClick={this.props.GoToPrevious}>Previous</button>
+                    <button type="button"
+                            className="btn btn-danger"
+                            onClick={this.props.GoToNext}>Next</button>
+                </div>
+            </div>
         );
     }
 }

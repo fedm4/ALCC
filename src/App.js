@@ -44,14 +44,18 @@ class App extends Component {
 
   handleSearch = () => this.fetchData();
 
-  closeModal = () => this.setState({selectedItem: {
-      make: '',
-      model: '',
-      price: '',
-      mileage: '',
-      thumbnail_url: ''
-    }
-  });
+  closeModal = () => this.setState({selectedItem: false});
+
+  setCurrentPage = page => this.setState({currentPage: page});
+
+  goToPrevious = () => {
+    this.setState({currentPage: this.state.currentPage - 1});
+    this.fetchData();
+  }
+  goToNext     = () => {
+    this.setState({currentPage: this.state.currentPage + 1});
+    this.fetchData();
+  }
 
   render() {
     return (
@@ -68,7 +72,10 @@ class App extends Component {
                           SearchInput={this.state.searchInput}></Home>
           <Search SearchInput={this.state.data}
                   SetSelectedItem={this.setSelectedItem}
-                  SelectedItem={this.state.selectedItem}></Search>
+                  SelectedItem={this.state.selectedItem}
+                  GoToPrevious={this.goToPrevious}
+                  GoToNext={this.goToNext}
+                  CurrentPage={this.state.currentPage}></Search>
           <Details SelectedItem={this.state.selectedItem} closeModal={this.closeModal}></Details>
         </main>
       </div>
